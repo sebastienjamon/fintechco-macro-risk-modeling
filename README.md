@@ -11,6 +11,7 @@ This project provides a complete demonstration environment that allows Data Scie
 - Build and test predictive models combining internal and external data
 - Understand the relationship between macro economic indicators and business performance
 - Develop fraud detection systems using machine learning
+- Validate customer identity documents using computer vision models (KYC/AML compliance)
 
 ## Project Structure
 
@@ -24,7 +25,10 @@ fintechco-macro-risk-modeling/
 │   │   ├── daily_internal_metrics.csv
 │   │   ├── monthly_internal_metrics.csv
 │   │   ├── fraud_predictions.csv
-│   │   └── fraud_detection_results.png
+│   │   ├── fraud_detection_results.png
+│   │   ├── id_card_features.csv
+│   │   ├── id_card_validation_predictions.csv
+│   │   └── id_card_validation_results.png
 │   └── fred/              # Real FRED macroeconomic data
 │       ├── federal_funds_rate.csv
 │       ├── consumer_price_index.csv
@@ -36,7 +40,8 @@ fintechco-macro-risk-modeling/
 │   ├── generate_synthetic_data.py
 │   ├── fetch_fred_data.py
 │   ├── linear_regression_model.py
-│   └── fraud_classification_model.py
+│   ├── fraud_classification_model.py
+│   └── id_card_validation_model.py
 ├── notebooks/             # Jupyter notebooks for analysis
 ├── requirements.txt       # Python dependencies
 └── README.md             # This file
@@ -185,6 +190,71 @@ python3 scripts/linear_regression_model.py
 python3 scripts/fraud_classification_model.py
 ```
 
+### 3. ID Card Validation Model (Vision-based Authentication)
+
+**Script:** `scripts/id_card_validation_model.py`
+
+**Purpose:** Validate authenticity of ID cards (drivers licenses, passports, national IDs) for KYC/AML compliance in banking and payment systems
+
+**Technology:** Simulates a computer vision model (CNN/Vision Transformer) that extracts features from ID card images and classifies documents as legitimate or fraudulent
+
+**Features Extracted by Vision Model:**
+- **Image Quality:** Sharpness, brightness, contrast
+- **Document Security Features:** Hologram detection, microprint quality, UV features
+- **OCR & Text Analysis:** Text extraction confidence, font consistency, text alignment
+- **Biometric Features:** Face detection, face quality, face symmetry
+- **Tampering Detection:** Edge consistency, lighting anomalies, color histogram analysis
+- **Template Matching:** Document template verification against known authentic IDs
+- **Metadata:** Document expiration status, document age
+
+**Model Performance:**
+- Training Accuracy: 1.0000
+- Test Accuracy: 1.0000
+- Training ROC-AUC: 1.0000
+- Test ROC-AUC: 1.0000
+- Fraud Detection Rate: 8% fraudulent IDs detected
+- Zero false positives and false negatives on test set
+
+**Top Important Features:**
+1. UV feature confidence (19.8%)
+2. Hologram confidence (16.5%)
+3. Microprint quality (14.0%)
+4. Template match score (9.2%)
+5. Font consistency (8.8%)
+
+**Fraud Types Detected:**
+- Photo swap (face replacement)
+- Fake hologram
+- Printed copy of genuine ID
+- Altered text (DOB, name, etc.)
+- Synthetic/fabricated ID
+- Template mismatch
+- Expired genuine documents
+
+**Risk Categorization:**
+- Low Risk: Fraud probability < 30%
+- Medium Risk: Fraud probability 30-60%
+- High Risk: Fraud probability 60-80%
+- Critical Risk: Fraud probability > 80%
+
+**Outputs:**
+- `data/synthetic/id_card_features.csv` - Vision model extracted features
+- `data/synthetic/id_card_validation_predictions.csv` - Predictions and risk scores
+- `data/synthetic/id_card_validation_results.png` - Performance visualizations
+
+**Usage:**
+```bash
+python3 scripts/id_card_validation_model.py
+```
+
+**Business Use Cases:**
+- Customer onboarding (KYC verification)
+- Account opening fraud prevention
+- Regulatory compliance (AML/KYC)
+- High-risk transaction verification
+- Age verification for restricted services
+- Identity verification for large withdrawals/transfers
+
 ## Getting Started
 
 ### Prerequisites
@@ -228,6 +298,11 @@ python3 scripts/linear_regression_model.py
 python3 scripts/fraud_classification_model.py
 ```
 
+3. Run the ID card validation model:
+```bash
+python3 scripts/id_card_validation_model.py
+```
+
 ## Use Cases
 
 ### 1. Strategic Planning
@@ -239,6 +314,9 @@ python3 scripts/fraud_classification_model.py
 - Identify periods of elevated fraud risk
 - Analyze fraud patterns across different transaction types and customer segments
 - Optimize fraud detection thresholds to balance false positives and false negatives
+- Validate customer identity documents during onboarding (KYC/AML)
+- Detect fraudulent ID submissions before account creation
+- Assess document authenticity risk for high-value transactions
 
 ### 3. Research & Development
 - Test new feature engineering approaches for fraud detection
@@ -266,6 +344,17 @@ python3 scripts/fraud_classification_model.py
 - Implement online learning for real-time adaptation
 - Create ensemble models combining multiple algorithms
 - Add explainability features (SHAP values) for regulatory compliance
+
+### ID Card Validation Model
+- **[RECOMMENDED IMPROVEMENT]** Implement multi-modal learning combining image features with extracted text data (OCR) and metadata
+- Add liveness detection to prevent photo/video replay attacks
+- Implement face matching against selfie photos for identity verification
+- Add temporal consistency checks (comparing multiple ID submissions over time)
+- Integrate with external databases for cross-validation (e.g., DMV records, passport databases)
+- Add adversarial robustness testing to detect sophisticated forgeries
+- Implement model explainability (Grad-CAM, attention maps) to highlight suspicious regions
+- Add support for international ID formats and multi-language OCR
+- Implement real-time edge deployment for mobile document scanning
 
 ## Data Dictionary
 
@@ -300,6 +389,40 @@ python3 scripts/fraud_classification_model.py
 | CPI | cpi_index | Consumer price index value |
 | Unemployment | unemployment_rate_percent | Unemployment rate (%) |
 | Real GDP | real_gdp_billions | GDP in billions of 2017 dollars |
+
+### ID Card Validation Features
+| Column | Type | Description |
+|--------|------|-------------|
+| id_card_id | string | Unique ID card submission identifier |
+| submission_date | datetime | Date ID was submitted for validation |
+| id_type | string | Type: drivers_license, passport, national_id, state_id |
+| issuing_country | string | Country that issued the ID document |
+| image_sharpness | float | Image quality metric (0-1) |
+| brightness_score | float | Image brightness quality (0-1) |
+| contrast_score | float | Image contrast quality (0-1) |
+| hologram_detected | bool | Whether hologram was detected |
+| hologram_confidence | float | Hologram authenticity confidence (0-1) |
+| microprint_quality | float | Microtext quality score (0-1) |
+| uv_features_detected | bool | Whether UV features were detected |
+| uv_confidence | float | UV feature authenticity (0-1) |
+| ocr_confidence | float | Text extraction quality (0-1) |
+| font_consistency_score | float | Font uniformity across document (0-1) |
+| text_alignment_score | float | Text alignment quality (0-1) |
+| face_detected | bool | Whether face was detected |
+| face_detection_confidence | float | Face detection confidence (0-1) |
+| face_quality_score | float | Face image quality (0-1) |
+| face_symmetry_score | float | Facial symmetry metric (0-1) |
+| edge_consistency | float | Document edge quality (0-1) |
+| lighting_consistency | float | Lighting uniformity score (0-1) |
+| color_histogram_score | float | Color distribution consistency (0-1) |
+| template_match_score | float | Match to known authentic templates (0-1) |
+| is_expired | bool | Whether document is expired |
+| document_age_years | float | Age of document in years |
+| is_fraudulent | int | 1 if fraudulent, 0 if legitimate |
+| fraud_type | string | Type of fraud detected (if applicable) |
+| predicted_fraudulent | int | Model prediction (0 or 1) |
+| fraud_probability | float | Fraud probability score (0-1) |
+| risk_category | string | Risk level: low_risk, medium_risk, high_risk, critical_risk |
 
 ## Contributing
 
