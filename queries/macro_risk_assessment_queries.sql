@@ -152,6 +152,7 @@ GROUP BY quarter
 ORDER BY quarter;
 
 -- 4.2 Synthetic ID fraud surge analysis (pre vs post June 2025)
+-- Note: June 2025 identified as inflection point
 SELECT 
     CASE 
         WHEN INCIDENT_DATE < '2025-06-01' THEN 'Pre-Surge (Jan-May 2025)'
