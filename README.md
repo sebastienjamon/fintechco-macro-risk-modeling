@@ -50,7 +50,7 @@ See [CLAUDE.md](CLAUDE.md) for detailed examples, workflows, and best practices.
 - **[Product Requirements Document (PRD)](docs/PRD_AI_Generated_Document_Detection.md)** - Business requirements, success metrics, user stories
 - **[Technical Specification](docs/TechSpec_AI_Generated_Document_Detection.md)** - Architecture, ML models, implementation details
 - **[Team Organization Plan](TEAM.md)** - Team structure, repository layout, sprint planning for 10 data scientists
-- **[Macro Risk Assessment](data/docs/Macro_Risk_Assessment_Dec2025_Validation.md)** - Fraud trend analysis and business impact
+- **[Macro Risk Assessment](reports/documents/Macro_Risk_Assessment_Dec2025_Validation.md)** - Fraud trend analysis and business impact
 
 **Key Objectives:**
 - Detect AI-generated IDs with ≥85% accuracy
@@ -70,42 +70,71 @@ See the [PRD](docs/PRD_AI_Generated_Document_Detection.md) and [Technical Spec](
 
 ```
 fintechco-macro-risk-modeling/
-├── data/
-│   ├── synthetic/          # Synthetic internal company data
-│   │   ├── payment_transactions.csv
-│   │   ├── fraud_histories.csv
-│   │   ├── customer_metrics.csv
-│   │   ├── daily_internal_metrics.csv
-│   │   ├── monthly_internal_metrics.csv
-│   │   ├── fraud_predictions.csv
-│   │   ├── fraud_detection_results.png
-│   │   ├── id_card_features.csv
-│   │   ├── id_card_validation_predictions.csv
-│   │   └── id_card_validation_results.png
-│   ├── fred/               # Real FRED macroeconomic data
-│   │   ├── federal_funds_rate.csv
-│   │   ├── consumer_price_index.csv
-│   │   ├── unemployment_rate.csv
-│   │   ├── real_gdp.csv
-│   │   ├── revenue_predictions.csv
-│   │   └── linear_regression_results.png
-│   └── docs/               # Analysis and assessment documents
-│       ├── Macro_Risk_Assessment_Dec2025.md
-│       └── Macro_Risk_Assessment_Dec2025_Validation.md
-├── docs/                   # Technical documentation
-│   ├── PRD_AI_Generated_Document_Detection.md
-│   └── TechSpec_AI_Generated_Document_Detection.md
-├── scripts/
+├── README.md                       # Project overview
+├── CLAUDE.md                       # Claude Code usage guide
+├── TEAM.md                         # Team organization and sprint planning
+├── CONTRIBUTING.md                 # Contribution guidelines
+├── LICENSE                         # MIT License
+├── .gitignore                      # Git ignore rules
+├── .env.example                    # Environment variables template
+├── pyproject.toml                  # Python project configuration
+├── setup.py                        # Package installation
+│
+├── src/fintechco/                  # 📦 Source code package
+│   ├── data/                       # Data loading and processing
+│   ├── models/                     # ML models
+│   ├── features/                   # Feature engineering
+│   ├── utils/                      # Utility functions
+│   └── api/                        # API endpoints (future)
+│
+├── scripts/                        # Entry point scripts
 │   ├── generate_synthetic_data.py
 │   ├── fetch_fred_data.py
 │   ├── linear_regression_model.py
 │   ├── fraud_classification_model.py
 │   └── id_card_validation_model.py
-├── queries/                # SQL queries for Snowflake analysis
+│
+├── tests/                          # Test suite
+│   ├── conftest.py                 # Pytest configuration
+│   ├── unit/                       # Unit tests
+│   ├── integration/                # Integration tests
+│   └── fixtures/                   # Test data
+│
+├── notebooks/                      # Jupyter notebooks for analysis
+│   ├── hypothesis_testing.ipynb
+│   ├── macro_scenario_projections.ipynb
+│   └── risk_analyst_scenario_validation.ipynb
+│
+├── data/                           # Data directory
+│   ├── synthetic/                  # Synthetic internal data
+│   │   ├── payment_transactions.csv
+│   │   ├── fraud_histories.csv
+│   │   └── customer_metrics.csv
+│   └── fred/                       # Real FRED macroeconomic data
+│       ├── federal_funds_rate.csv
+│       ├── consumer_price_index.csv
+│       └── unemployment_rate.csv
+│
+├── reports/                        # Analysis outputs
+│   ├── documents/                  # Analysis reports
+│   │   ├── Macro_Risk_Assessment_Dec2025.md
+│   │   └── Macro_Risk_Assessment_Dec2025_Validation.md
+│   └── figures/                    # Generated plots
+│       ├── fraud_detection_results.png
+│       └── id_card_validation_results.png
+│
+├── docs/                           # Technical documentation
+│   ├── PRD_AI_Generated_Document_Detection.md
+│   └── TechSpec_AI_Generated_Document_Detection.md
+│
+├── queries/                        # SQL queries for Snowflake
 │   └── macro_risk_assessment_queries.sql
-├── notebooks/              # Jupyter notebooks for analysis
-├── requirements.txt        # Python dependencies
-└── README.md              # This file
+│
+└── requirements/                   # Python dependencies
+    ├── base.txt                    # Core dependencies
+    ├── dev.txt                     # Development tools
+    ├── test.txt                    # Testing dependencies
+    └── docs.txt                    # Documentation tools
 ```
 
 ## Data Description
@@ -320,20 +349,44 @@ python3 scripts/id_card_validation_model.py
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- pip (Python package manager)
+- Python 3.11 or higher
+- Git
+- Virtual environment tool (venv recommended)
 
 ### Installation
 
-1. Clone or navigate to this repository:
-```bash
-cd fintechco-macro-risk-modeling
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/sebastienjamon/fintechco-macro-risk-modeling.git
+   cd fintechco-macro-risk-modeling
+   ```
 
-2. Install required Python packages:
-```bash
-pip3 install -r requirements.txt
-```
+2. **Create and activate virtual environment:**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. **Install the package:**
+   ```bash
+   # Option 1: Install as editable package with all dependencies (recommended)
+   pip install -e ".[dev,test]"
+
+   # Option 2: Install from requirements files
+   pip install -r requirements/base.txt
+   pip install -r requirements/dev.txt
+   ```
+
+4. **Setup environment variables:**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your actual credentials (FRED API key, Snowflake credentials, etc.)
+   ```
+
+5. **Verify installation:**
+   ```bash
+   pytest tests/
+   ```
 
 ### Generate Data
 
