@@ -1,4 +1,6 @@
-# AI-Generated Document Detection: Implementation Organization Plan
+# Team Organization: AI-Generated Document Detection
+
+> **Implementation guide for 10 data scientists building the AI detection system**
 
 **Date:** December 14, 2025
 **Team Size:** 10 Data Scientists

@@ -49,7 +49,7 @@ See [CLAUDE.md](CLAUDE.md) for detailed examples, workflows, and best practices.
 **Solution Documentation:**
 - **[Product Requirements Document (PRD)](docs/PRD_AI_Generated_Document_Detection.md)** - Business requirements, success metrics, user stories
 - **[Technical Specification](docs/TechSpec_AI_Generated_Document_Detection.md)** - Architecture, ML models, implementation details
-- **[Project Organization Plan](docs/PROJECT_ORGANIZATION.md)** - Team structure, repository layout, sprint planning for 10 data scientists
+- **[Team Organization Plan](TEAM.md)** - Team structure, repository layout, sprint planning for 10 data scientists
 - **[Macro Risk Assessment](data/docs/Macro_Risk_Assessment_Dec2025_Validation.md)** - Fraud trend analysis and business impact
 
 **Key Objectives:**
