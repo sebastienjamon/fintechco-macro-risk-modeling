@@ -13,6 +13,33 @@ This project provides a complete demonstration environment that allows Data Scie
 - Develop fraud detection systems using machine learning
 - Validate customer identity documents using computer vision models (KYC/AML compliance)
 
+## 🤖 Working with Claude Code
+
+**New to this demo?** See **[CLAUDE.md](CLAUDE.md)** for comprehensive guidance on using Claude Code with this project.
+
+**Quick Start with Claude:**
+```bash
+# Open the project in Claude Code
+cd fintechco-macro-risk-modeling
+claude
+
+# Try these example prompts:
+"Give me an overview of this project"
+"Run the fraud detection model and explain the results"
+"Analyze the correlation between unemployment and fraud incidents"
+"Fetch the latest unemployment rate from FRED"
+```
+
+**What Claude Can Help With:**
+- ✅ Exploratory data analysis and visualization
+- ✅ Running and improving ML models
+- ✅ Querying Snowflake database and FRED economic data
+- ✅ Feature engineering and model tuning
+- ✅ Creating custom analysis and reports
+- ✅ Production deployment planning
+
+See [CLAUDE.md](CLAUDE.md) for detailed examples, workflows, and best practices.
+
 ## 🚨 Critical Initiative: AI-Generated Document Detection
 
 **Status:** Planning Phase
