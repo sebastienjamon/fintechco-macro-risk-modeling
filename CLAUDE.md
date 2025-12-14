@@ -801,9 +801,9 @@ Generate a comparison table and recommend the best model for production.
 
 ### Internal Documentation
 - [README.md](README.md) - Project overview
-- [PRD: AI-Generated Document Detection](docs/PRD_AI_Generated_Document_Detection.md) - Product requirements
-- [Technical Spec: AI Detection](docs/TechSpec_AI_Generated_Document_Detection.md) - Technical architecture
-- [Macro Risk Assessment](data/docs/Macro_Risk_Assessment_Dec2025_Validation.md) - Fraud analysis
+- [PRD: AI-Generated Document Detection](docs/prd-ai-generated-document-detection.md) - Product requirements
+- [Technical Spec: AI Detection](docs/techspec-ai-generated-document-detection.md) - Technical architecture
+- [Macro Risk Assessment](reports/documents/macro-risk-assessment-dec2025-validation.md) - Fraud analysis
 
 ### External Resources
 - [FRED API Documentation](https://fred.stlouisfed.org/docs/api/fred/)

@@ -47,10 +47,10 @@ See [CLAUDE.md](CLAUDE.md) for detailed examples, workflows, and best practices.
 **Background:** Synthetic ID fraud surged 338% (June-November 2025), resulting in $420K losses YTD 2025. Current ID validation system detects traditional forgery but fails to identify fully AI-generated documents.
 
 **Solution Documentation:**
-- **[Product Requirements Document (PRD)](docs/PRD_AI_Generated_Document_Detection.md)** - Business requirements, success metrics, user stories
-- **[Technical Specification](docs/TechSpec_AI_Generated_Document_Detection.md)** - Architecture, ML models, implementation details
+- **[Product Requirements Document (PRD)](docs/prd-ai-generated-document-detection.md)** - Business requirements, success metrics, user stories
+- **[Technical Specification](docs/techspec-ai-generated-document-detection.md)** - Architecture, ML models, implementation details
 - **[Team Organization Plan](TEAM.md)** - Team structure, repository layout, sprint planning for 10 data scientists
-- **[Macro Risk Assessment](reports/documents/Macro_Risk_Assessment_Dec2025_Validation.md)** - Fraud trend analysis and business impact
+- **[Macro Risk Assessment](reports/documents/macro-risk-assessment-dec2025-validation.md)** - Fraud trend analysis and business impact
 
 **Key Objectives:**
 - Detect AI-generated IDs with ≥85% accuracy
@@ -64,7 +64,7 @@ See [CLAUDE.md](CLAUDE.md) for detailed examples, workflows, and best practices.
 3. **Phase 3 (Weeks 13-20):** Beta launch with blocking enabled
 4. **Phase 4 (Weeks 21-24):** General availability rollout
 
-See the [PRD](docs/PRD_AI_Generated_Document_Detection.md) and [Technical Spec](docs/TechSpec_AI_Generated_Document_Detection.md) for complete details.
+See the [PRD](docs/prd-ai-generated-document-detection.md) and [Technical Spec](docs/techspec-ai-generated-document-detection.md) for complete details.
 
 ## Project Structure
 
@@ -117,15 +117,15 @@ fintechco-macro-risk-modeling/
 │
 ├── reports/                        # Analysis outputs
 │   ├── documents/                  # Analysis reports
-│   │   ├── Macro_Risk_Assessment_Dec2025.md
-│   │   └── Macro_Risk_Assessment_Dec2025_Validation.md
+│   │   ├── macro-risk-assessment-dec2025.md
+│   │   └── macro-risk-assessment-dec2025-validation.md
 │   └── figures/                    # Generated plots
 │       ├── fraud_detection_results.png
 │       └── id_card_validation_results.png
 │
 ├── docs/                           # Technical documentation
-│   ├── PRD_AI_Generated_Document_Detection.md
-│   └── TechSpec_AI_Generated_Document_Detection.md
+│   ├── prd-ai-generated-document-detection.md
+│   └── techspec-ai-generated-document-detection.md
 │
 ├── queries/                        # SQL queries for Snowflake
 │   └── macro_risk_assessment_queries.sql

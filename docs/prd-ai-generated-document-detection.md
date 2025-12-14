@@ -463,8 +463,8 @@ The following capabilities are explicitly **not included** in V1:
 
 ## Appendix B: Related Documents
 
-- [Technical Specification: AI-Generated Document Detection](./TechSpec_AI_Generated_Document_Detection.md)
-- [Macro Risk Assessment Dec 2025](../data/docs/Macro_Risk_Assessment_Dec2025_Validation.md)
+- [Technical Specification: AI-Generated Document Detection](./techspec-ai-generated-document-detection.md)
+- [Macro Risk Assessment Dec 2025](../reports/documents/macro-risk-assessment-dec2025-validation.md)
 - [Existing ID Validation Model](../scripts/id_card_validation_model.py)
 - [High-Level Implementation Plan](../README.md) - see "Model Improvements & Next Steps"
 

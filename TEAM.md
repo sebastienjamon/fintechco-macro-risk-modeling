@@ -297,8 +297,8 @@ fintechco-macro-risk-modeling/
 │       └── deploy_staging.yml         # Staging deployment
 │
 ├── docs/                              # All documentation
-│   ├── PRD_AI_Generated_Document_Detection.md
-│   ├── TechSpec_AI_Generated_Document_Detection.md
+│   ├── prd-ai-generated-document-detection.md
+│   ├── techspec-ai-generated-document-detection.md
 │   ├── PROJECT_ORGANIZATION.md        # This file
 │   ├── features/                      # Feature documentation
 │   │   ├── ai_artifacts.md

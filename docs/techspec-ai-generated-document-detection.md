@@ -1652,8 +1652,8 @@ Version Control:
 
 ### Appendix D: Related Documents
 
-- [Product Requirements Document](./PRD_AI_Generated_Document_Detection.md)
-- [Macro Risk Assessment Dec 2025](../data/docs/Macro_Risk_Assessment_Dec2025_Validation.md)
+- [Product Requirements Document](./prd-ai-generated-document-detection.md)
+- [Macro Risk Assessment Dec 2025](../reports/documents/macro-risk-assessment-dec2025-validation.md)
 - [Existing ID Validation Model Code](../scripts/id_card_validation_model.py)
 
 ---
