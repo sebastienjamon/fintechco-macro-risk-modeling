@@ -13,6 +13,31 @@ This project provides a complete demonstration environment that allows Data Scie
 - Develop fraud detection systems using machine learning
 - Validate customer identity documents using computer vision models (KYC/AML compliance)
 
+## 🚨 Critical Initiative: AI-Generated Document Detection
+
+**Status:** Planning Phase
+**Priority:** Critical
+**Background:** Synthetic ID fraud surged 338% (June-November 2025), resulting in $420K losses YTD 2025. Current ID validation system detects traditional forgery but fails to identify fully AI-generated documents.
+
+**Solution Documentation:**
+- **[Product Requirements Document (PRD)](docs/PRD_AI_Generated_Document_Detection.md)** - Business requirements, success metrics, user stories
+- **[Technical Specification](docs/TechSpec_AI_Generated_Document_Detection.md)** - Architecture, ML models, implementation details
+- **[Macro Risk Assessment](data/docs/Macro_Risk_Assessment_Dec2025_Validation.md)** - Fraud trend analysis and business impact
+
+**Key Objectives:**
+- Detect AI-generated IDs with ≥85% accuracy
+- Reduce synthetic ID fraud losses by 50% within 6 months
+- Maintain <3% false positive rate on legitimate documents
+- Deploy two-stage detection pipeline (traditional + AI detection)
+
+**Implementation Phases:**
+1. **Phase 1 (Weeks 1-4):** Proof of Concept - AI artifact detection
+2. **Phase 2 (Weeks 5-12):** Alpha deployment in shadow mode
+3. **Phase 3 (Weeks 13-20):** Beta launch with blocking enabled
+4. **Phase 4 (Weeks 21-24):** General availability rollout
+
+See the [PRD](docs/PRD_AI_Generated_Document_Detection.md) and [Technical Spec](docs/TechSpec_AI_Generated_Document_Detection.md) for complete details.
+
 ## Project Structure
 
 ```
@@ -29,22 +54,30 @@ fintechco-macro-risk-modeling/
 │   │   ├── id_card_features.csv
 │   │   ├── id_card_validation_predictions.csv
 │   │   └── id_card_validation_results.png
-│   └── fred/              # Real FRED macroeconomic data
-│       ├── federal_funds_rate.csv
-│       ├── consumer_price_index.csv
-│       ├── unemployment_rate.csv
-│       ├── real_gdp.csv
-│       ├── revenue_predictions.csv
-│       └── linear_regression_results.png
+│   ├── fred/               # Real FRED macroeconomic data
+│   │   ├── federal_funds_rate.csv
+│   │   ├── consumer_price_index.csv
+│   │   ├── unemployment_rate.csv
+│   │   ├── real_gdp.csv
+│   │   ├── revenue_predictions.csv
+│   │   └── linear_regression_results.png
+│   └── docs/               # Analysis and assessment documents
+│       ├── Macro_Risk_Assessment_Dec2025.md
+│       └── Macro_Risk_Assessment_Dec2025_Validation.md
+├── docs/                   # Technical documentation
+│   ├── PRD_AI_Generated_Document_Detection.md
+│   └── TechSpec_AI_Generated_Document_Detection.md
 ├── scripts/
 │   ├── generate_synthetic_data.py
 │   ├── fetch_fred_data.py
 │   ├── linear_regression_model.py
 │   ├── fraud_classification_model.py
 │   └── id_card_validation_model.py
-├── notebooks/             # Jupyter notebooks for analysis
-├── requirements.txt       # Python dependencies
-└── README.md             # This file
+├── queries/                # SQL queries for Snowflake analysis
+│   └── macro_risk_assessment_queries.sql
+├── notebooks/              # Jupyter notebooks for analysis
+├── requirements.txt        # Python dependencies
+└── README.md              # This file
 ```
 
 ## Data Description
