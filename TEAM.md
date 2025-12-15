@@ -1,11 +1,11 @@
 # Team Organization: AI-Generated Document Detection
 
-> **Implementation guide for 10 data scientists building the AI detection system**
+> **Implementation guide for 19-person engineering team building the AI detection system**
 
-**Date:** December 14, 2025
-**Team Size:** 10 Data Scientists
+**Date:** December 15, 2025
+**Team Size:** 19 people (3 Data Scientists, 6 Machine Learning Engineers, 10 Software Engineers)
 **Duration:** 24 weeks (6 months)
-**Total Tasks:** 35 implementation items
+**Total Tasks:** 52 implementation items
 **Status:** Planning Phase
 
 ---
@@ -14,13 +14,14 @@
 
 1. [Executive Summary](#executive-summary)
 2. [Team Structure](#team-structure)
-3. [Repository Structure](#repository-structure)
-4. [Development Workflow](#development-workflow)
-5. [Sprint Planning](#sprint-planning)
-6. [Tooling & Infrastructure](#tooling--infrastructure)
-7. [Communication & Ceremonies](#communication--ceremonies)
-8. [Risk Management](#risk-management)
-9. [Success Metrics](#success-metrics)
+3. [Squad Breakdown](#squad-breakdown)
+4. [Repository Structure](#repository-structure)
+5. [Development Workflow](#development-workflow)
+6. [Sprint Planning](#sprint-planning)
+7. [Tooling & Infrastructure](#tooling--infrastructure)
+8. [Communication & Ceremonies](#communication--ceremonies)
+9. [Risk Management](#risk-management)
+10. [Success Metrics](#success-metrics)
 
 ---
 
@@ -30,10 +31,30 @@
 Implement AI-generated document detection system to reduce synthetic ID fraud losses by 50% ($420K → $200K) within 6 months.
 
 ### Team Organization Strategy
-- **3 Squads** of 3-4 data scientists each
-- **Squad-based ownership** with clear deliverables
+- **4 Squads** with specialized roles: Research, ML Engineering, Platform Engineering, Integration
+- **19 people** total: 3 Data Scientists, 6 Machine Learning Engineers, 10 Software Engineers
+- **Role-based ownership** with clear technical boundaries
 - **Weekly cross-squad syncs** to ensure integration
-- **Rotating tech lead** to build leadership skills
+
+### Role Definitions
+
+**Data Scientists (3 total):**
+- Research and experimentation
+- Algorithm design and architecture decisions
+- Model performance analysis and optimization strategies
+- Technical documentation and knowledge sharing
+
+**Machine Learning Engineers (6 total):**
+- Feature engineering and model implementation
+- Training pipeline development
+- Model optimization and deployment
+- ML infrastructure and tooling
+
+**Software Engineers (10 total):**
+- Production infrastructure and APIs
+- CI/CD and DevOps automation
+- Monitoring and observability
+- Integration testing and deployment
 
 ### Critical Success Factors
 ✅ Training data acquisition (DMV partnership) - **blocking for Phase 1**
@@ -45,48 +66,71 @@ Implement AI-generated document detection system to reduce synthetic ID fraud lo
 
 ## Team Structure
 
-### Squad-Based Organization
+### 4-Squad Organization
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                   LEAD DATA SCIENTIST (You)                     │
+│                   LEAD DATA SCIENTIST                           │
 │  • Overall architecture and technical direction                 │
 │  • Cross-squad coordination and unblocking                      │
 │  • Stakeholder management (Product, Engineering, Fraud Ops)     │
 │  • Final model approval and production sign-off                 │
 └────────────────────┬────────────────────────────────────────────┘
                      │
-        ┌────────────┴────────────┬────────────────┐
-        ↓                         ↓                ↓
-┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐
-│   SQUAD 1        │   │   SQUAD 2        │   │   SQUAD 3        │
-│   Detection      │   │   Infrastructure │   │   Validation     │
-│   Models         │   │   & Deployment   │   │   & Integration  │
-├──────────────────┤   ├──────────────────┤   ├──────────────────┤
-│  • Tech Lead     │   │  • Tech Lead     │   │  • Tech Lead     │
-│  • DS 1          │   │  • DS 1          │   │  • DS 1          │
-│  • DS 2          │   │  • DS 2          │   │  • DS 2          │
-│  • DS 3          │   │  • DS 3 (part)   │   │  • DS 3 (part)   │
-│                  │   │                  │   │                  │
-│  (4 people)      │   │  (3 people)      │   │  (3 people)      │
-└──────────────────┘   └──────────────────┘   └──────────────────┘
+        ┌────────────┼────────────┬─────────────┐
+        ↓            ↓            ↓             ↓
+┌──────────────┐ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
+│   SQUAD 1    │ │   SQUAD 2    │ │   SQUAD 3    │ │   SQUAD 4    │
+│   Model      │ │   ML Infra & │ │   Platform & │ │ Integration  │
+│   Research   │ │   Training   │ │   Deployment │ │   & Quality  │
+├──────────────┤ ├──────────────┤ ├──────────────┤ ├──────────────┤
+│ • DS Lead    │ │ • DS Lead    │ │ • SWE Lead   │ │ • DS Lead    │
+│ • MLE 1      │ │ • MLE 1      │ │ • SWE 2      │ │ • MLE 1      │
+│ • MLE 2      │ │ • MLE 2      │ │ • SWE 3      │ │ • SWE 1      │
+│ • MLE 3      │ │ • SWE 1      │ │ • SWE 4      │ │ • SWE 2      │
+│              │ │ • SWE 2      │ │ • SWE 5      │ │              │
+│              │ │ • SWE 3      │ │              │ │              │
+│  (4 people)  │ │  (6 people)  │ │  (5 people)  │ │  (4 people)  │
+└──────────────┘ └──────────────┘ └──────────────┘ └──────────────┘
+  1 DS + 3 MLEs     1 DS + 2 MLEs    5 SWEs         1 DS + 1 MLE
+                    + 3 SWEs                        + 2 SWEs
 ```
 
 ---
 
-## Squad 1: Detection Models (4 Data Scientists)
+## Squad Breakdown
 
-**Mission:** Build and optimize core AI detection models
+## Squad 1: Model Research & Development (1 DS + 3 MLEs)
+
+**Mission:** Design, implement, and optimize core AI detection models
+
+### Team Composition
+- **1 Data Scientist (Tech Lead)**
+- **3 Machine Learning Engineers**
 
 ### Responsibilities
 
-#### Tech Lead: ML Architecture & Model Performance
-- Overall model architecture decisions
-- Hyperparameter tuning strategy
-- Model performance review and approval
-- Technical documentation
+#### DS Lead: Model Architecture & Research Direction
+**Role:** Technical leadership, research, algorithm design
 
-#### DS 1: AI Artifact Detection
+**Responsibilities:**
+- Overall model architecture decisions
+- Research direction and algorithm selection
+- Model performance analysis and optimization strategies
+- Hyperparameter tuning strategy
+- Technical documentation and knowledge transfer
+- Paper reviews and staying current with SOTA
+
+**Deliverables:**
+- Architecture decision documents
+- Research findings and experiment reports
+- Model performance analysis notebooks
+
+---
+
+#### MLE 1: AI Artifact Features
+**Role:** Feature engineering for AI detection
+
 **Tasks (8):**
 1. FFT spectral anomaly detection implementation
 2. PRNU (camera fingerprint) analysis
@@ -99,11 +143,15 @@ Implement AI-generated document detection system to reduce synthetic ID fraud lo
 
 **Deliverables:**
 - `src/features/ai_artifacts.py` - Feature extraction module
-- `tests/test_ai_artifacts.py` - Comprehensive tests
-- `notebooks/ai_artifacts_exploration.ipynb` - EDA and validation
+- `tests/unit/test_ai_artifacts.py` - Comprehensive tests
+- `notebooks/01_ai_artifacts_exploration.ipynb` - EDA and validation
 - Documentation: `docs/features/ai_artifacts.md`
 
-#### DS 2: Deepfake & Biometric Features
+---
+
+#### MLE 2: Deepfake & Biometric Features
+**Role:** Deepfake detection and face analysis
+
 **Tasks (7):**
 1. Eye reflection consistency analysis
 2. Pupil light response validation
@@ -116,11 +164,15 @@ Implement AI-generated document detection system to reduce synthetic ID fraud lo
 **Deliverables:**
 - `src/features/deepfake_detection.py`
 - `src/models/deepfake_detector.py`
-- `tests/test_deepfake.py`
+- `tests/unit/test_deepfake.py`
 - Pre-trained model: `models/deepfake_detector_v1.0.onnx`
 - Documentation: `docs/features/deepfake_detection.md`
 
-#### DS 3: AI Artifact Model & Ensemble
+---
+
+#### MLE 3: Model Training & Ensemble
+**Role:** Model training, ensemble, and risk fusion
+
 **Tasks (6):**
 1. AI artifact detector training (EfficientNet-B3)
 2. Risk fusion algorithm implementation
@@ -147,27 +199,66 @@ Implement AI-generated document detection system to reduce synthetic ID fraud lo
 
 ---
 
-## Squad 2: Infrastructure & Deployment (3 Data Scientists)
+## Squad 2: ML Infrastructure & Training (1 DS + 2 MLEs + 3 SWEs)
 
-**Mission:** Build production infrastructure and deployment pipeline
+**Mission:** Build ML infrastructure, training pipelines, and model serving
+
+### Team Composition
+- **1 Data Scientist (Tech Lead)**
+- **2 Machine Learning Engineers**
+- **3 Software Engineers**
 
 ### Responsibilities
 
-#### Tech Lead: MLOps & Production Systems
-- Infrastructure architecture
-- CI/CD pipeline design
-- Model serving strategy
-- Performance optimization
+#### DS Lead: MLOps & Experimentation
+**Role:** MLOps strategy, experiment design, technical oversight
 
-#### DS 1: Training Data & Pipelines
+**Responsibilities:**
+- MLOps architecture and tooling selection
+- Experiment tracking strategy (MLflow)
+- Training pipeline design
+- Model versioning and registry strategy
+- Performance benchmarking methodology
+- Cross-functional coordination (with Platform squad)
+
+**Deliverables:**
+- MLOps architecture document
+- Experiment tracking best practices guide
+- Model registry governance policies
+
+---
+
+#### MLE 1: Training Pipelines & Model Optimization
+**Role:** Model training, hyperparameter tuning, optimization
+
 **Tasks (7):**
+1. Training pipeline development (PyTorch)
+2. Model versioning and registry (MLflow)
+3. Training orchestration (Ray, Kubeflow, or SageMaker)
+4. Hyperparameter tuning framework (Optuna)
+5. Distributed training setup (multi-GPU)
+6. Model performance benchmarking
+7. Model optimization (pruning, quantization)
+
+**Deliverables:**
+- `training/train_ai_detector.py` - Training script
+- `training/train_deepfake.py` - Deepfake training script
+- `training/config/` - Training configurations
+- `training/hyperparameter_search.py` - Tuning scripts
+- Documentation: `docs/training/training_guide.md`
+
+---
+
+#### MLE 2: Data Pipelines & Feature Store
+**Role:** Data engineering for ML
+
+**Tasks (6):**
 1. DMV partnership coordination (50K authentic IDs)
 2. Synthetic ID generation (Stable Diffusion, Midjourney, DALL-E)
 3. Data labeling pipeline (fraud analyst integration)
-4. Active learning queue implementation
-5. Training/validation/test split strategy
-6. Data versioning (DVC or similar)
-7. Feature store setup (Feast)
+4. Training/validation/test split strategy
+5. Data versioning (DVC)
+6. Feature store setup (Feast)
 
 **Deliverables:**
 - `data/training/` - Organized dataset (100K+ images)
@@ -176,32 +267,54 @@ Implement AI-generated document detection system to reduce synthetic ID fraud lo
 - `dvc.yaml` - Data versioning configuration
 - Documentation: `docs/data/dataset_guide.md`
 
-#### DS 2: Model Training & Registry
-**Tasks (6):**
-1. MLflow experiment tracking setup
-2. Model versioning and registry
-3. Training orchestration (Ray, Kubeflow, or SageMaker)
-4. Hyperparameter tuning framework (Optuna)
-5. Distributed training setup (multi-GPU)
-6. Model performance benchmarking
+---
 
-**Deliverables:**
-- `training/train_ai_detector.py` - Training script
-- `training/train_deepfake.py` - Deepfake training script
-- `training/config/` - Training configurations
-- MLflow tracking server deployed
-- Documentation: `docs/training/training_guide.md`
+#### SWE 1: ML Infrastructure
+**Role:** GPU clusters, training infrastructure
 
-#### DS 3: Inference & API (Shared with Squad 3)
 **Tasks (4):**
-1. Model serving infrastructure (TensorRT optimization)
-2. FastAPI endpoint implementation
-3. Batch inference pipeline
-4. Load testing and optimization
+1. GPU cluster provisioning (AWS EC2 g5/p4d instances)
+2. Training infrastructure setup (Docker, Kubernetes)
+3. Job scheduling and resource management
+4. Cost optimization for training workloads
 
 **Deliverables:**
-- `src/api/endpoints.py` - REST API endpoints
+- `deployment/kubernetes/training_job.yaml`
+- `deployment/terraform/gpu_cluster.tf`
+- ML infrastructure runbook
+
+---
+
+#### SWE 2: Data Engineering Infrastructure
+**Role:** ETL pipelines, data storage
+
+**Tasks (4):**
+1. Data ingestion pipelines (from DMV, synthetic generation)
+2. Data quality validation
+3. Active learning queue implementation
+4. S3/Snowflake data storage architecture
+
+**Deliverables:**
+- `src/data/ingestion_pipeline.py`
+- `src/data/quality_checks.py`
+- `src/active_learning/queue.py`
+- Data infrastructure documentation
+
+---
+
+#### SWE 3: Model Serving Infrastructure
+**Role:** Inference infrastructure, TensorRT optimization
+
+**Tasks (5):**
+1. Model serving infrastructure (TensorRT optimization)
+2. ONNX runtime setup
+3. Inference API wrapper
+4. Batch inference pipeline
+5. Load testing and optimization
+
+**Deliverables:**
 - `src/inference/predictor.py` - Inference wrapper
+- `src/inference/batch_processor.py`
 - `docker/inference.Dockerfile` - Production container
 - Load test results: `tests/performance/load_test_report.md`
 
@@ -212,23 +325,155 @@ Implement AI-generated document detection system to reduce synthetic ID fraud lo
 | 4 | Training Data Acquired | 50K authentic IDs + 50K synthetic IDs |
 | 8 | MLflow + Training Pipeline | Reproducible training runs |
 | 12 | Model Registry Operational | Version control, rollback capability |
-| 20 | Production Deployment | 1000 req/min sustained, <500ms p99 |
+| 20 | Inference Infrastructure | <500ms p99 latency, TensorRT optimized |
 
 ---
 
-## Squad 3: Validation & Integration (3 Data Scientists)
+## Squad 3: Platform & Deployment (5 SWEs)
 
-**Mission:** Ensure quality, integrate with existing systems, enable active learning
+**Mission:** Build production platform, APIs, infrastructure, and observability
+
+### Team Composition
+- **5 Software Engineers**
 
 ### Responsibilities
 
-#### Tech Lead: Integration & Quality Assurance
-- Integration with existing ID validation model
-- End-to-end testing strategy
-- Production monitoring design
-- Fraud analyst collaboration
+#### SWE Lead (Tech Lead): Platform Architecture
+**Role:** System architecture, technical leadership
 
-#### DS 1: Semantic Validation Features
+**Responsibilities:**
+- Overall platform architecture
+- API design and standards
+- Infrastructure architecture
+- Technology stack decisions
+- Cross-squad technical coordination
+- Production readiness reviews
+
+**Deliverables:**
+- Platform architecture documentation
+- API design standards
+- Infrastructure roadmap
+
+---
+
+#### SWE 2: API Development
+**Role:** REST API implementation
+
+**Tasks (6):**
+1. FastAPI endpoint implementation
+2. API authentication and authorization
+3. Request/response validation (Pydantic)
+4. API documentation (OpenAPI/Swagger)
+5. Rate limiting and throttling
+6. API versioning strategy
+
+**Deliverables:**
+- `src/api/endpoints.py` - REST API endpoints
+- `src/api/schemas.py` - Pydantic schemas
+- `src/api/auth.py` - Authentication middleware
+- API documentation
+
+---
+
+#### SWE 3: Infrastructure & DevOps
+**Role:** Cloud infrastructure, Kubernetes, Terraform
+
+**Tasks (7):**
+1. Kubernetes cluster setup
+2. Infrastructure as Code (Terraform)
+3. Container orchestration (Docker, K8s)
+4. Auto-scaling configuration
+5. Load balancer setup
+6. Security groups and networking
+7. Secrets management (AWS Secrets Manager)
+
+**Deliverables:**
+- `deployment/kubernetes/` - K8s manifests
+- `deployment/terraform/` - Infrastructure code
+- Infrastructure runbook
+
+---
+
+#### SWE 4: CI/CD Pipelines
+**Role:** Continuous integration and deployment
+
+**Tasks (6):**
+1. GitHub Actions CI/CD setup
+2. Automated testing pipeline
+3. Container build and push (ECR)
+4. Deployment automation (staging, production)
+5. Rollback procedures
+6. Blue-green deployment strategy
+
+**Deliverables:**
+- `.github/workflows/ci.yml` - CI pipeline
+- `.github/workflows/deploy_staging.yml`
+- `.github/workflows/deploy_production.yml`
+- CI/CD documentation
+
+---
+
+#### SWE 5: Monitoring & Observability
+**Role:** Monitoring, logging, alerting, SRE
+
+**Tasks (7):**
+1. Prometheus metrics collection
+2. Grafana dashboards
+3. ELK Stack setup (Elasticsearch, Logstash, Kibana)
+4. PagerDuty alerting integration
+5. Application performance monitoring (APM)
+6. SLO/SLI definition and tracking
+7. On-call runbook creation
+
+**Deliverables:**
+- `monitoring/grafana_dashboards/` - Dashboard configs
+- `monitoring/prometheus/` - Metrics configuration
+- `monitoring/alerting_rules.yaml`
+- On-call runbooks
+
+### Squad 3 Milestones
+
+| Week | Milestone | Success Criteria |
+|------|-----------|------------------|
+| 6 | API Endpoints Live | All endpoints documented and tested |
+| 10 | Infrastructure Complete | K8s cluster operational, auto-scaling |
+| 14 | CI/CD Operational | Automated deployments to staging |
+| 18 | Monitoring Complete | Grafana dashboards, PagerDuty alerts live |
+
+---
+
+## Squad 4: Integration & Quality (1 DS + 1 MLE + 2 SWEs)
+
+**Mission:** Ensure quality, integrate with existing systems, enable testing
+
+### Team Composition
+- **1 Data Scientist (Tech Lead)**
+- **1 Machine Learning Engineer**
+- **2 Software Engineers**
+
+### Responsibilities
+
+#### DS Lead: Validation & Quality Assurance
+**Role:** Quality strategy, validation methodology
+
+**Responsibilities:**
+- Validation strategy and test design
+- Quality metrics definition
+- Integration with existing ID validation model
+- Fraud analyst collaboration
+- Shadow mode experiment design
+- Success criteria validation
+
+**Deliverables:**
+- Quality assurance strategy document
+- Validation methodology documentation
+- Shadow mode analysis reports
+
+---
+
+#### MLE 1: Semantic Validation Features
+**Role:** Rule-based validation, consistency checks
+
 **Tasks (5):**
 1. Temporal consistency checks (issue date vs. features)
 2. Geographic consistency validation (state vs. template)
@@ -239,45 +484,85 @@ Implement AI-generated document detection system to reduce synthetic ID fraud lo
 **Deliverables:**
 - `src/features/semantic_validators.py`
 - `src/data/document_templates.py` - Template database
-- `tests/test_semantic_validators.py`
+- `tests/unit/test_semantic_validators.py`
 - Documentation: `docs/features/semantic_validation.md`
 
-#### DS 2: Active Learning & Monitoring
-**Tasks (6):**
-1. Active learning pipeline (0.4-0.6 probability flagging)
-2. Manual review UI integration
-3. Retraining trigger logic
-4. Model drift detection
-5. Performance monitoring dashboard (Grafana)
-6. Alerting system (PagerDuty integration)
+---
 
-**Deliverables:**
-- `src/active_learning/flagging_service.py`
-- `src/monitoring/drift_detector.py`
-- `monitoring/grafana_dashboards/` - Dashboard configs
-- `monitoring/alerting_rules.yaml`
-- Documentation: `docs/monitoring/monitoring_guide.md`
+#### SWE 1: Integration Testing & Pipeline
+**Role:** End-to-end testing, pipeline integration
 
-#### DS 3: Integration & Testing (Shared with Squad 2)
-**Tasks (3):**
+**Tasks (5):**
 1. Integration with Stage 1 (traditional forgery model)
-2. End-to-end testing suite
-3. Shadow mode deployment testing
+2. Two-stage pipeline implementation
+3. End-to-end testing suite
+4. Performance testing
+5. Contract testing (API contracts)
 
 **Deliverables:**
 - `src/pipeline/two_stage_pipeline.py`
 - `tests/integration/test_full_pipeline.py`
-- `tests/integration/shadow_mode_validation.py`
+- `tests/performance/test_latency.py`
 - Documentation: `docs/integration/pipeline_integration.md`
 
-### Squad 3 Milestones
+---
+
+#### SWE 2: Shadow Mode & Rollout Management
+**Role:** Deployment strategy, rollout management
+
+**Tasks (6):**
+1. Shadow mode deployment implementation
+2. Feature flag system
+3. Gradual rollout management (10% → 25% → 50% → 100%)
+4. A/B testing infrastructure
+5. Rollback automation
+6. Production monitoring during rollout
+
+**Deliverables:**
+- `src/utils/feature_flags.py`
+- `src/deployment/rollout_manager.py`
+- `tests/integration/shadow_mode_validation.py`
+- Rollout playbook
+
+### Squad 4 Milestones
 
 | Week | Milestone | Success Criteria |
 |------|-----------|------------------|
 | 6 | Semantic Validators Complete | All consistency checks implemented |
-| 10 | Active Learning Pipeline | Flagging and retraining automated |
-| 14 | Monitoring Dashboard Live | Real-time metrics visible |
+| 10 | Integration Pipeline Complete | Two-stage pipeline operational |
+| 14 | Testing Suite Complete | End-to-end tests passing |
 | 18 | Shadow Mode Deployed | 100% traffic logged, 0 user impact |
+
+---
+
+## Task Summary by Role
+
+### Data Scientists (3 total) - 21 tasks
+- **Squad 1 DS Lead:** Architecture, research direction (ongoing)
+- **Squad 2 DS Lead:** MLOps strategy, experiment design (ongoing)
+- **Squad 4 DS Lead:** Validation strategy, quality assurance (ongoing)
+
+### Machine Learning Engineers (6 total) - 26 tasks
+- **Squad 1 MLE 1:** 8 tasks (AI artifact features)
+- **Squad 1 MLE 2:** 7 tasks (Deepfake detection)
+- **Squad 1 MLE 3:** 6 tasks (Model training & ensemble)
+- **Squad 2 MLE 1:** 7 tasks (Training pipelines)
+- **Squad 2 MLE 2:** 6 tasks (Data pipelines)
+- **Squad 4 MLE 1:** 5 tasks (Semantic validation)
+
+### Software Engineers (10 total) - 46 tasks
+- **Squad 2 SWE 1:** 4 tasks (ML infrastructure)
+- **Squad 2 SWE 2:** 4 tasks (Data engineering)
+- **Squad 2 SWE 3:** 5 tasks (Model serving)
+- **Squad 3 SWE Lead:** Architecture, oversight (ongoing)
+- **Squad 3 SWE 2:** 6 tasks (API development)
+- **Squad 3 SWE 3:** 7 tasks (Infrastructure)
+- **Squad 3 SWE 4:** 6 tasks (CI/CD)
+- **Squad 3 SWE 5:** 7 tasks (Monitoring)
+- **Squad 4 SWE 1:** 5 tasks (Integration testing)
+- **Squad 4 SWE 2:** 6 tasks (Shadow mode & rollout)
+
+**Total: 52 implementation tasks + ongoing leadership responsibilities**
 
 ---
 
@@ -289,173 +574,119 @@ Implement AI-generated document detection system to reduce synthetic ID fraud lo
 fintechco-macro-risk-modeling/
 ├── README.md
 ├── CLAUDE.md
+├── TEAM.md                         # This file
+├── CONTRIBUTING.md
+├── LICENSE
 ├── .gitignore
-├── .github/
-│   └── workflows/
-│       ├── ci.yml                     # CI/CD pipeline
-│       ├── model_training.yml         # Training automation
-│       └── deploy_staging.yml         # Staging deployment
+├── pyproject.toml
+├── setup.py
 │
-├── docs/                              # All documentation
+├── .github/                        # CI/CD (Squad 3, SWE 4)
+│   └── workflows/
+│       ├── ci.yml
+│       ├── deploy_staging.yml
+│       └── deploy_production.yml
+│
+├── docs/                           # Documentation
 │   ├── prd-ai-generated-document-detection.md
 │   ├── techspec-ai-generated-document-detection.md
-│   ├── PROJECT_ORGANIZATION.md        # This file
-│   ├── features/                      # Feature documentation
-│   │   ├── ai_artifacts.md
-│   │   ├── deepfake_detection.md
-│   │   └── semantic_validation.md
-│   ├── models/                        # Model documentation
-│   │   ├── ai_artifact_detector.md
-│   │   ├── deepfake_detector.md
-│   │   └── ensemble_strategy.md
-│   ├── data/                          # Data documentation
-│   │   ├── dataset_guide.md
-│   │   └── data_versioning.md
-│   ├── training/                      # Training documentation
-│   │   └── training_guide.md
-│   ├── monitoring/                    # Monitoring documentation
-│   │   └── monitoring_guide.md
-│   └── integration/                   # Integration documentation
-│       └── pipeline_integration.md
+│   ├── features/                   # Feature docs (Squad 1 MLEs)
+│   ├── models/                     # Model docs (Squad 1)
+│   ├── data/                       # Data docs (Squad 2 MLE 2)
+│   ├── training/                   # Training docs (Squad 2 MLE 1)
+│   ├── api/                        # API docs (Squad 3 SWE 2)
+│   ├── infrastructure/             # Infra docs (Squad 3 SWE 3)
+│   └── integration/                # Integration docs (Squad 4)
 │
-├── src/                               # Source code
-│   ├── __init__.py
-│   ├── features/                      # Feature engineering (Squad 1)
-│   │   ├── __init__.py
-│   │   ├── ai_artifacts.py            # DS 1
-│   │   ├── deepfake_detection.py      # DS 2
-│   │   └── semantic_validators.py     # DS 3-1
+├── src/fintechco/                  # Source code
+│   ├── features/                   # Feature engineering (Squad 1 MLEs)
+│   │   ├── ai_artifacts.py         # Squad 1 MLE 1
+│   │   ├── deepfake_detection.py   # Squad 1 MLE 2
+│   │   └── semantic_validators.py  # Squad 4 MLE 1
 │   │
-│   ├── models/                        # ML models (Squad 1)
-│   │   ├── __init__.py
-│   │   ├── ai_artifact_detector.py    # DS 3
-│   │   ├── deepfake_detector.py       # DS 2
-│   │   └── risk_fusion.py             # DS 3
+│   ├── models/                     # ML models (Squad 1 MLE 3)
+│   │   ├── ai_artifact_detector.py
+│   │   ├── deepfake_detector.py
+│   │   └── risk_fusion.py
 │   │
-│   ├── data/                          # Data handling (Squad 2)
-│   │   ├── __init__.py
-│   │   ├── data_loader.py             # DS 1
-│   │   ├── augmentation.py            # DS 1
-│   │   └── document_templates.py      # DS 3-1
+│   ├── data/                       # Data handling (Squad 2)
+│   │   ├── data_loader.py          # Squad 2 MLE 2
+│   │   ├── augmentation.py         # Squad 2 MLE 2
+│   │   ├── ingestion_pipeline.py   # Squad 2 SWE 2
+│   │   └── document_templates.py   # Squad 4 MLE 1
 │   │
-│   ├── pipeline/                      # Pipeline orchestration (Squad 3)
-│   │   ├── __init__.py
-│   │   ├── two_stage_pipeline.py      # DS 3-3
+│   ├── pipeline/                   # Pipeline orchestration (Squad 4)
+│   │   ├── two_stage_pipeline.py   # Squad 4 SWE 1
 │   │   └── preprocessor.py
 │   │
-│   ├── api/                           # REST API (Squad 2)
-│   │   ├── __init__.py
-│   │   ├── endpoints.py               # DS 3
-│   │   └── schemas.py
+│   ├── api/                        # REST API (Squad 3)
+│   │   ├── endpoints.py            # Squad 3 SWE 2
+│   │   ├── schemas.py              # Squad 3 SWE 2
+│   │   └── auth.py                 # Squad 3 SWE 2
 │   │
-│   ├── inference/                     # Inference engine (Squad 2)
-│   │   ├── __init__.py
-│   │   └── predictor.py               # DS 3
+│   ├── inference/                  # Inference engine (Squad 2 SWE 3)
+│   │   ├── predictor.py
+│   │   └── batch_processor.py
 │   │
-│   ├── active_learning/               # Active learning (Squad 3)
-│   │   ├── __init__.py
-│   │   ├── flagging_service.py        # DS 2
-│   │   └── retraining_trigger.py      # DS 2
+│   ├── active_learning/            # Active learning (Squad 2 SWE 2)
+│   │   └── queue.py
 │   │
-│   ├── monitoring/                    # Monitoring (Squad 3)
-│   │   ├── __init__.py
-│   │   └── drift_detector.py          # DS 2
+│   ├── monitoring/                 # Monitoring (Squad 3 SWE 5)
+│   │   ├── metrics.py
+│   │   └── drift_detector.py
 │   │
-│   ├── explainability/                # Model explainability (Squad 1)
-│   │   ├── __init__.py
-│   │   └── model_explainer.py         # DS 3
+│   ├── explainability/             # Model explainability (Squad 1 MLE 3)
+│   │   └── model_explainer.py
 │   │
-│   └── utils/                         # Shared utilities
-│       ├── __init__.py
-│       ├── image_processing.py
-│       └── config.py
+│   ├── deployment/                 # Deployment (Squad 4 SWE 2)
+│   │   ├── feature_flags.py
+│   │   └── rollout_manager.py
+│   │
+│   └── utils/                      # Shared utilities
+│       ├── config.py
+│       └── image_processing.py
 │
-├── training/                          # Training scripts (Squad 2)
-│   ├── train_ai_detector.py           # DS 2
-│   ├── train_deepfake.py              # DS 2
-│   ├── config/                        # Training configurations
-│   │   ├── ai_detector_config.yaml
-│   │   └── deepfake_config.yaml
-│   └── hyperparameter_search.py       # DS 2
+├── training/                       # Training scripts (Squad 2 MLE 1)
+│   ├── train_ai_detector.py
+│   ├── train_deepfake.py
+│   ├── config/
+│   └── hyperparameter_search.py
 │
-├── tests/                             # Test suite
-│   ├── unit/                          # Unit tests
-│   │   ├── test_ai_artifacts.py       # Squad 1, DS 1
-│   │   ├── test_deepfake.py           # Squad 1, DS 2
-│   │   └── test_semantic_validators.py # Squad 3, DS 1
-│   ├── integration/                   # Integration tests
-│   │   ├── test_full_pipeline.py      # Squad 3, DS 3
-│   │   └── shadow_mode_validation.py  # Squad 3, DS 3
-│   └── performance/                   # Performance tests
-│       ├── test_latency.py
-│       └── load_test_report.md        # Squad 2, DS 3
+├── tests/                          # Test suite
+│   ├── unit/                       # Unit tests (All squads)
+│   ├── integration/                # Integration tests (Squad 4)
+│   └── performance/                # Performance tests (Squad 2 SWE 3)
 │
-├── notebooks/                         # Jupyter notebooks (EDA & experiments)
-│   ├── 01_ai_artifacts_exploration.ipynb     # Squad 1, DS 1
-│   ├── 02_deepfake_analysis.ipynb            # Squad 1, DS 2
-│   ├── 03_model_ensemble_experiments.ipynb   # Squad 1, DS 3
-│   ├── 04_data_quality_analysis.ipynb        # Squad 2, DS 1
-│   └── 05_monitoring_dashboard_design.ipynb  # Squad 3, DS 2
+├── deployment/                     # Deployment configs (Squad 3)
+│   ├── kubernetes/                 # K8s manifests (Squad 3 SWE 3)
+│   └── terraform/                  # Infrastructure as code (Squad 3 SWE 3)
 │
-├── data/                              # Data directory
-│   ├── training/                      # Training datasets (Squad 2, DS 1)
-│   │   ├── authentic/                 # Real IDs (DMV partnership)
-│   │   ├── synthetic/                 # AI-generated IDs
-│   │   ├── train.csv                  # Training split
-│   │   ├── val.csv                    # Validation split
-│   │   └── test.csv                   # Test split
-│   ├── templates/                     # Document templates (Squad 3, DS 1)
-│   │   └── id_templates.json
-│   └── raw/                           # Raw data (not versioned)
+├── monitoring/                     # Monitoring configs (Squad 3 SWE 5)
+│   ├── grafana_dashboards/
+│   ├── prometheus/
+│   └── alerting_rules.yaml
 │
-├── models/                            # Trained models (versioned)
-│   ├── ai_artifact_detector_v1.0.onnx
-│   ├── deepfake_detector_v1.0.onnx
+├── docker/                         # Docker configs
+│   ├── training.Dockerfile         # Squad 2
+│   ├── inference.Dockerfile        # Squad 2 SWE 3
+│   └── api.Dockerfile              # Squad 3
+│
+├── data/                           # Data directory
+│   └── training/                   # Training data (Squad 2 MLE 2)
+│
+├── models/                         # Trained models
 │   └── model_metadata.json
 │
-├── monitoring/                        # Monitoring configurations
-│   ├── grafana_dashboards/            # Squad 3, DS 2
-│   │   ├── model_performance.json
-│   │   └── fraud_analytics.json
-│   └── alerting_rules.yaml            # Squad 3, DS 2
+├── notebooks/                      # Jupyter notebooks (All squads)
 │
-├── docker/                            # Docker configurations
-│   ├── training.Dockerfile            # Training container
-│   ├── inference.Dockerfile           # Inference container (Squad 2, DS 3)
-│   └── api.Dockerfile                 # API container
+├── requirements/                   # Python dependencies
+│   ├── base.txt
+│   ├── training.txt
+│   ├── inference.txt
+│   └── dev.txt
 │
-├── deployment/                        # Deployment configurations
-│   ├── kubernetes/                    # K8s manifests
-│   │   ├── inference_deployment.yaml
-│   │   └── api_service.yaml
-│   └── terraform/                     # Infrastructure as code
-│       ├── main.tf
-│       └── variables.tf
-│
-├── scripts/                           # Utility scripts (existing + new)
-│   ├── generate_synthetic_data.py     # Existing
-│   ├── fetch_fred_data.py             # Existing
-│   ├── id_card_validation_model.py    # Existing (Stage 1)
-│   ├── generate_synthetic_ids.py      # NEW: Squad 2, DS 1
-│   └── evaluate_model.py              # NEW: Model evaluation
-│
-├── requirements/                      # Python dependencies (split by environment)
-│   ├── base.txt                       # Core dependencies
-│   ├── training.txt                   # Training-specific (PyTorch, etc.)
-│   ├── inference.txt                  # Inference-specific (ONNX, TensorRT)
-│   └── dev.txt                        # Development tools (pytest, black, etc.)
-│
-├── .dvc/                              # Data Version Control
-│   └── config
-├── dvc.yaml                           # DVC pipeline configuration
-├── dvc.lock                           # DVC lock file
-│
-├── mlflow/                            # MLflow artifacts (local)
-│   └── .gitkeep
-│
-├── pyproject.toml                     # Python project configuration
-├── setup.py                           # Package setup
-└── .pre-commit-config.yaml            # Pre-commit hooks
+├── scripts/                        # Utility scripts
+└── queries/                        # SQL queries
 ```
 
 ---
@@ -467,20 +698,26 @@ fintechco-macro-risk-modeling/
 ```
 main (protected)
  ↑
- ├─ squad1/ai-artifacts (Squad 1 shared branch)
- │   ├─ ds1/fft-detection (individual features)
- │   ├─ ds1/prnu-analysis
- │   └─ ds2/eye-reflection
+ ├─ squad1/models (Squad 1 shared branch)
+ │   ├─ mle1/ai-artifacts (individual features)
+ │   ├─ mle2/deepfake
+ │   └─ mle3/ensemble
  │
- ├─ squad2/infrastructure (Squad 2 shared branch)
- │   ├─ ds1/data-pipeline
- │   ├─ ds2/mlflow-setup
- │   └─ ds3/api-endpoints
+ ├─ squad2/ml-infra (Squad 2 shared branch)
+ │   ├─ mle1/training-pipeline
+ │   ├─ mle2/data-pipeline
+ │   └─ swe3/model-serving
  │
- └─ squad3/integration (Squad 3 shared branch)
-     ├─ ds1/semantic-validators
-     ├─ ds2/active-learning
-     └─ ds3/two-stage-pipeline
+ ├─ squad3/platform (Squad 3 shared branch)
+ │   ├─ swe2/api
+ │   ├─ swe3/infrastructure
+ │   ├─ swe4/cicd
+ │   └─ swe5/monitoring
+ │
+ └─ squad4/integration (Squad 4 shared branch)
+     ├─ mle1/semantic-validation
+     ├─ swe1/integration-tests
+     └─ swe2/shadow-mode
 ```
 
 ### Workflow Rules
@@ -488,15 +725,15 @@ main (protected)
 #### 1. Individual Work
 ```bash
 # Create feature branch from squad branch
-git checkout squad1/ai-artifacts
-git pull origin squad1/ai-artifacts
-git checkout -b ds1/fft-detection
+git checkout squad1/models
+git pull origin squad1/models
+git checkout -b mle1/fft-detection
 
 # Work on feature
 # ... commit regularly ...
 
 # Open PR to squad branch
-gh pr create --base squad1/ai-artifacts --title "Add FFT spectral anomaly detection"
+gh pr create --base squad1/models --title "Add FFT spectral anomaly detection"
 ```
 
 #### 2. Squad Integration
@@ -504,7 +741,7 @@ gh pr create --base squad1/ai-artifacts --title "Add FFT spectral anomaly detect
 # Squad lead reviews and merges PRs to squad branch
 # Weekly: Merge squad branch to main after testing
 
-git checkout squad1/ai-artifacts
+git checkout squad1/models
 git pull origin main  # Integrate latest changes
 # Run tests
 pytest tests/unit/
@@ -526,25 +763,6 @@ gh pr create --base main --title "Squad 1: Week 4 integration - AI Artifact Feat
 - All integration tests must pass
 - Performance benchmarks meet targets
 - Architecture review if needed
-
-### Feature Flags
-
-Use feature flags for gradual rollout:
-
-```python
-# src/utils/feature_flags.py
-FEATURE_FLAGS = {
-    "enable_ai_artifact_detection": False,  # Phase 1 PoC
-    "enable_deepfake_detection": False,     # Phase 2
-    "enable_stage2_blocking": False,        # Phase 3 Beta
-    "enable_active_learning": False,        # Phase 3
-}
-
-def is_feature_enabled(feature_name: str) -> bool:
-    """Check if feature is enabled (can read from config/env)."""
-    return os.getenv(f"FEATURE_{feature_name.upper()}",
-                     FEATURE_FLAGS.get(feature_name, False))
-```
 
 ---
 
@@ -588,25 +806,29 @@ def is_feature_enabled(feature_name: str) -> bool:
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Implement 4 AI artifact features | FFT, PRNU, JPEG artifacts, checkerboard detection |
-| Squad 2 | Acquire training data | 10K authentic IDs, 10K synthetic IDs (initial batch) |
-| Squad 3 | Implement 2 semantic validators | Temporal consistency, geographic consistency |
+| Squad 2 | Acquire training data + MLflow setup | 10K authentic IDs, 10K synthetic IDs, MLflow operational |
+| Squad 3 | API scaffold + K8s setup | FastAPI skeleton, K8s cluster provisioned |
+| Squad 4 | Implement 2 semantic validators | Temporal consistency, geographic consistency |
 
 **Success Criteria:**
 - All features extract valid scores (0-1 range)
 - Initial training dataset available
 - Unit tests passing
+- Development environment operational
 
 **Sprint 2 (Weeks 3-4): PoC Model**
 
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Train baseline AI artifact detector | Model achieves ≥70% detection on 340 known fraud |
-| Squad 2 | Setup MLflow + training pipeline | Reproducible training runs |
-| Squad 3 | Complete semantic validation suite | All 5 validators implemented |
+| Squad 2 | Training pipeline operational | Reproducible training runs via MLflow |
+| Squad 3 | CI/CD pipeline + monitoring skeleton | GitHub Actions working, Grafana dashboards |
+| Squad 4 | Complete semantic validation suite | All 5 validators implemented |
 
 **Success Criteria:**
 - PoC model trained and evaluated
 - MLflow experiment tracking operational
+- CI/CD deploying to staging environment
 - Semantic validators integrated
 
 ---
@@ -618,32 +840,36 @@ def is_feature_enabled(feature_name: str) -> bool:
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Implement deepfake features + train model | XceptionNet trained on FaceForensics++ |
-| Squad 2 | Scale training data to 50K+ | DMV partnership operational |
-| Squad 3 | Build active learning pipeline | Flagging service + manual review integration |
+| Squad 2 | Scale training data to 50K+ | DMV partnership operational, data pipelines |
+| Squad 3 | Complete API endpoints | All REST endpoints implemented |
+| Squad 4 | Integration testing framework | Test suite structure in place |
 
 **Sprint 4 (Weeks 7-8): Ensemble & Optimization**
 
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Implement risk fusion + explainability | SHAP values, Grad-CAM visualization |
-| Squad 2 | Hyperparameter tuning | Optuna optimization runs |
-| Squad 3 | Integration testing | End-to-end pipeline tests |
+| Squad 2 | Hyperparameter tuning + model optimization | Optuna runs, TensorRT optimization |
+| Squad 3 | Infrastructure hardening | Auto-scaling, security hardening |
+| Squad 4 | End-to-end tests | Full pipeline integration tests |
 
 **Sprint 5 (Weeks 9-10): Production Infrastructure**
 
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Model performance optimization | <500ms inference latency |
-| Squad 2 | Deploy API + model serving | FastAPI endpoints live in staging |
-| Squad 3 | Monitoring dashboard | Grafana dashboards configured |
+| Squad 2 | Production model training | Model v1.0 ready for production |
+| Squad 3 | Load testing + optimization | 1000 req/min sustained |
+| Squad 4 | Performance validation | Latency and throughput benchmarks |
 
 **Sprint 6 (Weeks 11-12): Shadow Mode Prep**
 
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Final model training | Production model v1.0 |
-| Squad 2 | Shadow mode deployment | 100% traffic logging, 0 blocking |
-| Squad 3 | Validation framework | Compare shadow predictions to ground truth |
+| Squad 2 | Model registry + versioning complete | Rollback capability validated |
+| Squad 3 | Production deployment | Shadow mode infrastructure ready |
+| Squad 4 | Shadow mode implementation | 100% traffic logging, 0 blocking |
 
 **Phase 2 Milestone:** Shadow mode deployed, collecting real-world data
 
@@ -657,31 +883,35 @@ def is_feature_enabled(feature_name: str) -> bool:
 |-------|-------|--------------|
 | Squad 1 | Analyze shadow mode performance | Real-world accuracy assessment |
 | Squad 2 | Performance tuning | Optimize based on production load |
-| Squad 3 | Manual review workflow | Train fraud analysts, collect labels |
+| Squad 3 | Monitoring & alerting operational | PagerDuty alerts, runbooks |
+| Squad 4 | Manual review workflow | Train fraud analysts, collect labels |
 
 **Sprint 8 (Weeks 15-16): Beta Rollout Start**
 
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Model refinement based on shadow data | Model v1.1 with improved accuracy |
-| Squad 2 | 10% traffic beta rollout | Blocking enabled for critical risk (≥0.9) |
-| Squad 3 | Monitoring & alerting | PagerDuty integration, alert rules |
+| Squad 2 | Active learning pipeline | Retraining automation |
+| Squad 3 | 10% traffic beta rollout | Blocking enabled for critical risk (≥0.9) |
+| Squad 4 | Rollout management + monitoring | Feature flags, gradual rollout controls |
 
 **Sprint 9 (Weeks 17-18): Beta Scale-Up**
 
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Threshold tuning | Optimize blocking threshold |
-| Squad 2 | 50% traffic rollout | Auto-scaling operational |
-| Squad 3 | Active learning operational | Weekly retraining pipeline |
+| Squad 2 | Model retraining operational | Weekly retraining pipeline |
+| Squad 3 | 50% traffic rollout | Auto-scaling operational |
+| Squad 4 | A/B testing analysis | Compare v1.0 vs v1.1 performance |
 
 **Sprint 10 (Weeks 19-20): Beta Complete**
 
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Final model optimization | Production model v2.0 |
-| Squad 2 | 100% traffic beta | All traffic processed |
-| Squad 3 | GA readiness assessment | Validate all success criteria |
+| Squad 2 | Model performance monitoring | Drift detection operational |
+| Squad 3 | 100% traffic beta | All traffic processed |
+| Squad 4 | GA readiness assessment | Validate all success criteria |
 
 **Phase 3 Milestone:** Beta complete, ready for GA
 
@@ -694,16 +924,18 @@ def is_feature_enabled(feature_name: str) -> bool:
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Production readiness review | Model cards, bias audits |
-| Squad 2 | Disaster recovery testing | Rollback procedures validated |
-| Squad 3 | Documentation complete | All runbooks, SOPs published |
+| Squad 2 | Final optimization | Cost optimization, performance tuning |
+| Squad 3 | Disaster recovery testing | Rollback procedures validated |
+| Squad 4 | Documentation complete | All runbooks, SOPs published |
 
 **Sprint 12 (Weeks 23-24): GA Launch & Optimization**
 
 | Squad | Goals | Deliverables |
 |-------|-------|--------------|
 | Squad 1 | Post-launch model monitoring | Drift detection operational |
-| Squad 2 | Cost optimization | Infrastructure rightsizing |
-| Squad 3 | Success metrics reporting | Final KPI dashboard |
+| Squad 2 | Continuous improvement pipeline | Active learning fully automated |
+| Squad 3 | Cost optimization | Infrastructure rightsizing |
+| Squad 4 | Success metrics reporting | Final KPI dashboard |
 
 **Phase 4 Milestone:** GA launched, 50% fraud loss reduction achieved
 
@@ -717,7 +949,7 @@ def is_feature_enabled(feature_name: str) -> bool:
 ```yaml
 tools:
   - Git (GitHub): Code version control
-  - GitHub Projects: Task tracking (alternative to Jira)
+  - GitHub Projects: Task tracking
   - GitHub Actions: CI/CD automation
   - Pre-commit hooks: Code quality checks (black, flake8, mypy)
 ```
@@ -741,7 +973,7 @@ training:
   - ONNX Runtime: Model export and inference
   - Optuna: Hyperparameter tuning
   - Ray Tune: Distributed hyperparameter search
-  - Weights & Biases or MLflow: Experiment tracking
+  - MLflow: Experiment tracking and model registry
 
 data:
   - DVC: Data version control
@@ -769,46 +1001,13 @@ orchestration:
   - Docker: Containerization
   - Kubernetes: Container orchestration
   - Terraform: Infrastructure as code
-  - ArgoCD or Flux: GitOps deployment
+  - ArgoCD: GitOps deployment
 
 monitoring:
   - Prometheus: Metrics collection
   - Grafana: Dashboards and visualization
-  - ELK Stack: Log aggregation (Elasticsearch, Logstash, Kibana)
+  - ELK Stack: Log aggregation
   - PagerDuty: Alerting and on-call
-```
-
-### Recommended Setup Script
-
-```bash
-#!/bin/bash
-# setup_dev_environment.sh
-
-echo "Setting up AI Detection development environment..."
-
-# 1. Python environment
-pyenv install 3.11
-pyenv local 3.11
-python -m venv .venv
-source .venv/bin/activate
-
-# 2. Install dependencies
-pip install -r requirements/dev.txt
-
-# 3. Pre-commit hooks
-pre-commit install
-
-# 4. DVC setup
-dvc init
-dvc remote add -d storage s3://fintechco-ai-detection-data
-
-# 5. MLflow setup
-export MLFLOW_TRACKING_URI=http://mlflow.fintechco.internal:5000
-
-# 6. Test installation
-pytest tests/unit/ --cov=src --cov-report=html
-
-echo "✅ Development environment ready!"
 ```
 
 ---
@@ -823,7 +1022,7 @@ echo "✅ Development environment ready!"
 
 **Async Template (Slack):**
 ```
-🌅 Daily Update - [Your Name] - [Date]
+🌅 Daily Update - [Your Name] - [Role] - [Date]
 
 ✅ Yesterday:
 - Implemented FFT spectral anomaly detection
@@ -831,7 +1030,7 @@ echo "✅ Development environment ready!"
 
 🎯 Today:
 - Add PRNU camera fingerprint analysis
-- Review DS2's deepfake PR
+- Review MLE2's deepfake PR
 
 🚧 Blockers:
 - Need access to DMV dataset (waiting on legal approval)
@@ -850,7 +1049,7 @@ echo "✅ Development environment ready!"
 ### Weekly Ceremonies
 
 #### Monday: Sprint Planning (2 hours)
-**Attendees:** All 10 data scientists + Product Manager
+**Attendees:** All 19 engineers + Product Manager
 
 **Agenda:**
 1. Review previous sprint (30 min)
@@ -869,14 +1068,15 @@ echo "✅ Development environment ready!"
 **Attendees:** All team + Stakeholders (Product, Engineering, Fraud Ops)
 
 **Format:**
-- Squad 1: 15 min demo + 5 min Q&A
-- Squad 2: 15 min demo + 5 min Q&A
-- Squad 3: 15 min demo + 5 min Q&A
+- Squad 1: 12 min demo + 3 min Q&A
+- Squad 2: 12 min demo + 3 min Q&A
+- Squad 3: 12 min demo + 3 min Q&A
+- Squad 4: 12 min demo + 3 min Q&A
 
 **Goal:** Show working software, get feedback
 
 #### Friday: Retrospective (1 hour)
-**Attendees:** All 10 data scientists (no stakeholders)
+**Attendees:** All 19 engineers (no stakeholders)
 
 **Format:**
 1. What went well? (15 min)
@@ -887,26 +1087,6 @@ echo "✅ Development environment ready!"
 **Outputs:**
 - 3-5 actionable improvements for next sprint
 - Assigned owners for each action item
-
-### Monthly Ceremonies
-
-#### Monthly All-Hands (1 hour)
-**Attendees:** Entire Data Science org + Leadership
-
-**Agenda:**
-- Project status update
-- Key metrics review
-- Upcoming milestones
-- Shoutouts and recognition
-
-#### Model Review Board (2 hours, Monthly)
-**Attendees:** Lead DS + 2 squad leads + Model Governance Committee
-
-**Agenda:**
-- Model performance review
-- Bias and fairness audit
-- Risk assessment
-- Production readiness sign-off
 
 ---
 
@@ -924,7 +1104,7 @@ echo "✅ Development environment ready!"
 - Generate synthetic training data in-house (Stable Diffusion)
 - Fallback: Purchase labeled dataset from third party
 
-**Owner:** Squad 2, DS 1 + Lead DS
+**Owner:** Squad 2 MLE 2 + Lead DS
 
 **Status Check:** Week 2 (if not resolved, escalate to VP level)
 
@@ -942,7 +1122,7 @@ echo "✅ Development environment ready!"
 - If 80-85% by Week 10: Continue with ensemble tuning
 - If ≥85% by Week 10: Success, optimize latency
 
-**Owner:** Squad 1 Tech Lead
+**Owner:** Squad 1 DS Lead
 
 **Decision Point:** Sprint 5 retrospective (Week 10)
 
@@ -960,7 +1140,7 @@ echo "✅ Development environment ready!"
   - Batch inference for non-real-time paths
 - Fallback: Reduce model complexity (smaller backbone)
 
-**Owner:** Squad 2, DS 3
+**Owner:** Squad 2 SWE 3 + Squad 1 MLE 3
 
 **Milestone:** Week 10 performance testing
 
@@ -970,7 +1150,7 @@ echo "✅ Development environment ready!"
 **Impact:** MEDIUM (timeline slip)
 **Probability:** MEDIUM
 
-**Example:** Squad 3 blocked on Squad 1's model outputs
+**Example:** Squad 4 blocked on Squad 1's model outputs
 
 **Mitigation:**
 - Mock interfaces early (Week 1)
@@ -978,7 +1158,7 @@ echo "✅ Development environment ready!"
 - Weekly cross-squad sync to identify blockers early
 - Lead DS unblocks dependencies within 1 business day
 
-**Owner:** Lead DS (you)
+**Owner:** Lead DS
 
 **Prevention:** Dependency map updated in sprint planning
 
@@ -997,10 +1177,10 @@ echo "✅ Development environment ready!"
 - Shadow mode first (Phase 2) - no user impact
 - Gradual rollout (10% → 25% → 50% → 100%)
 - Circuit breaker: Auto-rollback if FPR >5%
-- On-call rotation (2 DS per week during Beta/GA)
+- On-call rotation (2 SWEs per week during Beta/GA)
 - Runbooks for common incidents
 
-**Owner:** Squad 2 Tech Lead
+**Owner:** Squad 3 SWE Lead + Squad 4 SWE 2
 
 **Testing:** Week 16 disaster recovery drill
 
@@ -1024,7 +1204,7 @@ echo "✅ Development environment ready!"
 #### Development Velocity
 | Metric | Target | Track |
 |--------|--------|-------|
-| Sprint Velocity | 10-15 story points/sprint | Weekly |
+| Sprint Velocity | 15-20 story points/sprint | Weekly |
 | Test Coverage | ≥80% | Weekly |
 | CI Build Success Rate | ≥95% | Daily |
 | Code Review Time | <24 hours | Weekly |
@@ -1056,11 +1236,11 @@ Document key architectural and process decisions:
 
 | Date | Decision | Rationale | Owner | Status |
 |------|----------|-----------|-------|--------|
-| 2025-12-14 | Use PyTorch over TensorFlow | Team expertise, better GPU support | Lead DS | ✅ Approved |
-| 2025-12-14 | Monorepo over multi-repo | Easier coordination, atomic commits | Lead DS | ✅ Approved |
-| 2025-12-14 | 3 squads of 3-4 people | Balance specialization and collaboration | Lead DS | ✅ Approved |
+| 2025-12-15 | 4 squads with role specialization | Leverage DS/MLE/SWE expertise | Lead DS | ✅ Approved |
+| 2025-12-15 | PyTorch over TensorFlow | Team expertise, better GPU support | Squad 1 DS | ✅ Approved |
+| 2025-12-15 | Monorepo over multi-repo | Easier coordination, atomic commits | Lead DS | ✅ Approved |
 | TBD | ONNX vs TorchServe for inference | Latency and deployment complexity | Squad 2 Lead | 🔄 Under review |
-| TBD | MLflow vs W&B for tracking | Cost and feature comparison | Squad 2 Lead | 🔄 Under review |
+| TBD | MLflow vs W&B for tracking | Cost and feature comparison | Squad 2 DS | 🔄 Under review |
 
 ---
 
@@ -1073,6 +1253,7 @@ For each new team member joining the project:
 - [ ] Access granted (GitHub, Snowflake, FRED, MLflow)
 - [ ] Read PRD and Technical Spec
 - [ ] Review this organization document
+- [ ] Understand role expectations (DS vs MLE vs SWE)
 - [ ] Run all existing models locally
 - [ ] Attend squad standup and introduce yourself
 
@@ -1090,103 +1271,18 @@ For each new team member joining the project:
 
 ---
 
-## Appendix: Task Breakdown by Squad
-
-### Squad 1 Tasks (21 tasks)
-
-**AI Artifact Detection (DS 1): 8 tasks**
-1. FFT spectral anomaly detection
-2. PRNU camera fingerprint analysis
-3. JPEG compression artifact detection
-4. Checkerboard artifact detection
-5. Edge coherence scoring
-6. Noise distribution analysis
-7. Feature engineering pipeline
-8. Unit tests
-
-**Deepfake Detection (DS 2): 7 tasks**
-9. Eye reflection consistency
-10. Pupil light response validation
-11. Facial landmark distribution
-12. Skin texture realism
-13. 3D face geometry estimation
-14. Face detection integration
-15. Deepfake model training
-
-**Ensemble & Explainability (DS 3): 6 tasks**
-16. AI artifact model training
-17. Risk fusion algorithm
-18. Model ensemble strategy
-19. Threshold optimization
-20. SHAP explainability
-21. A/B testing framework
-
----
-
-### Squad 2 Tasks (17 tasks)
-
-**Data & Pipelines (DS 1): 7 tasks**
-22. DMV partnership (50K IDs)
-23. Synthetic ID generation
-24. Data labeling pipeline
-25. Active learning queue
-26. Train/val/test splits
-27. Data versioning (DVC)
-28. Feature store setup
-
-**Training & Registry (DS 2): 6 tasks**
-29. MLflow setup
-30. Model versioning
-31. Training orchestration
-32. Hyperparameter tuning
-33. Distributed training
-34. Performance benchmarking
-
-**Inference & API (DS 3): 4 tasks**
-35. TensorRT optimization
-36. FastAPI endpoints
-37. Batch inference
-38. Load testing
-
----
-
-### Squad 3 Tasks (14 tasks)
-
-**Semantic Validation (DS 1): 5 tasks**
-39. Temporal consistency
-40. Geographic consistency
-41. Regulatory consistency
-42. Text-image consistency
-43. Digital watermark detection
-
-**Active Learning & Monitoring (DS 2): 6 tasks**
-44. Active learning pipeline
-45. Manual review UI
-46. Retraining triggers
-47. Model drift detection
-48. Grafana dashboards
-49. PagerDuty alerting
-
-**Integration & Testing (DS 3): 3 tasks**
-50. Two-stage pipeline integration
-51. End-to-end testing
-52. Shadow mode deployment
-
-**Total: 52 tasks** (adjusted from initial 35 estimate after detailed breakdown)
-
----
-
 ## Contact & Escalation
 
 ### Squad Tech Leads
-- **Squad 1 Lead:** [Name] - Slack: @squad1-lead - Email: squad1@fintechco.com
-- **Squad 2 Lead:** [Name] - Slack: @squad2-lead - Email: squad2@fintechco.com
-- **Squad 3 Lead:** [Name] - Slack: @squad3-lead - Email: squad3@fintechco.com
+- **Squad 1 Lead (DS):** [Name] - Slack: @squad1-ds-lead
+- **Squad 2 Lead (DS):** [Name] - Slack: @squad2-ds-lead
+- **Squad 3 Lead (SWE):** [Name] - Slack: @squad3-swe-lead
+- **Squad 4 Lead (DS):** [Name] - Slack: @squad4-ds-lead
 
 ### Project Leadership
-- **Lead Data Scientist:** [Your Name] - Slack: @lead-ds - Email: lead.ds@fintechco.com
-- **Product Manager:** [Name] - Slack: @pm-fraud - Email: pm@fintechco.com
-- **Engineering Manager:** [Name] - Slack: @eng-mgr - Email: eng.mgr@fintechco.com
+- **Lead Data Scientist:** [Your Name] - Slack: @lead-ds
+- **Product Manager:** [Name] - Slack: @pm-fraud
+- **Engineering Manager:** [Name] - Slack: @eng-mgr
 
 ### Escalation Path
 1. **Level 1:** Squad tech lead (resolved within squad)
@@ -1196,7 +1292,7 @@ For each new team member joining the project:
 
 ---
 
-**Document Version:** 1.0
-**Last Updated:** December 14, 2025
+**Document Version:** 2.0
+**Last Updated:** December 15, 2025
 **Next Review:** End of Sprint 2 (Week 4)
 **Maintained By:** Lead Data Scientist
